@@ -227,8 +227,6 @@ public:
     }
 
     double getFillFactor() const {
-        // Fórmula del PDF:
-        // FillFactor = #elements / (capacity * k)
         return static_cast<double>(numElements) /
                static_cast<double>(capacity * maxCollisionK);
     }
