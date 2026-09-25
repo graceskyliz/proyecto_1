@@ -1,9 +1,6 @@
-//
-// Created by utec_alumno on 16/09/2026.
-//
-
 #ifndef AED___REPO_ADE_HASH_TABLE_H
 #define AED___REPO_ADE_HASH_TABLE_H
+
 #include <iostream>
 #include <functional>
 #include <stdexcept>
@@ -19,6 +16,7 @@ template <typename Key>
 size_t base_hash(const Key& key) {
     return std::hash<Key>{}(key);
 }
+
 template <typename Key>
 class DivisionHash {
 public:
@@ -26,7 +24,6 @@ public:
         return base_hash(key) % tableSize;
     }
 };
-
 
 template <typename Key, typename Value, typename HashPolicy = DivisionHash<Key>>
 class Hash_table {
@@ -39,11 +36,11 @@ class Hash_table {
             : key(k), value(v), next(n) {}
     };
 
-    Node** table;               // arreglo de punteros a listas
-    size_t capacity;            // tamaño de la tabla
-    size_t numElements;         // número total de elementos
+    Node** table;               // Arreglo de punteros a listas
+    size_t capacity;            // Tamaño de la tabla
+    size_t numElements;         // Número total de elementos
     size_t maxCollisionK;       // k del PDF
-    double maxFillFactor;       // 0.5
+    double maxFillFactor;       // Factor de carga máximo (ej. 0.5)
     HashPolicy hashFunction;
 
     // Libera todos los nodos
@@ -106,9 +103,9 @@ class Hash_table {
 
 public:
     explicit Hash_table(size_t initialCapacity = 5,
-                       size_t k = 3,
-                       double maxFF = 0.5,
-                       const HashPolicy& hp = HashPolicy())
+                        size_t k = 3,
+                        double maxFF = 0.5,
+                        const HashPolicy& hp = HashPolicy())
         : table(nullptr),
           capacity(0),
           numElements(0),
@@ -128,16 +125,17 @@ public:
         initTable(initialCapacity);
     }
 
-    ~HashTable() {
+    ~Hash_table() {
         clearBuckets();
         delete[] table;
     }
 
-    HashTable(const HashTable&) = delete;
-    HashTable& operator=(const HashTable&) = delete;
+    Hash_table(const Hash_table&) = delete;
+    Hash_table& operator=(const Hash_table&) = delete;
 
     void insert(const Key& key, const Value& value) {
         size_t index = hashFunction(key, capacity);
+        
         // Si ya existe, actualizamos
         Node* current = table[index];
         while (current != nullptr) {
@@ -147,6 +145,7 @@ public:
             }
             current = current->next;
         }
+
         // Verificamos rehash antes de insertar nuevo elemento
         if (needsRehashAfterNextInsertion()) {
             rehash();
@@ -253,7 +252,8 @@ public:
         }
         return count;
     }
-    // Imprimir tabla
+
+    // Imprimir tabla en consola
     void print() const {
         cout << "-----------------------------------------\n";
         cout << "Capacity      : " << capacity << "\n";
@@ -274,6 +274,6 @@ public:
         }
         cout << "-----------------------------------------\n";
     }
-
 };
-#endif //AED___REPO_ADE_HASH_TABLE_H
+
+#endif // AED___REPO_ADE_HASH_TABLE_H
