@@ -234,6 +234,10 @@ public:
         return maxFillFactor;
     }
 
+    size_t bucketIndex(const Key& key) const {
+        return hashFunction(key, capacity);
+    }
+
     bool empty() const {
         return numElements == 0;
     }
