@@ -1,9 +1,15 @@
-# Tabla hash con separate chaining
+# Proyecto AED 2026-1 - Tabla hash con separate chaining
 
 Este proyecto implementa una tabla hash genérica en C++ usando **separate chaining**
 (encadenamiento separado) para resolver colisiones. El programa de prueba ejecuta
 varias operaciones, genera un registro en `trace.json` y una escena de Manim usa
 ese registro para crear una animación de la tabla.
+
+| Integrantes |
+| --- |
+| Zavaleta Alvino, Roger |
+| Aquino Reyna, Jesus Emmanuel | 
+| Mendoza Palacios, Gracia Luz | 
 
 ## Contenido del proyecto
 
@@ -14,7 +20,7 @@ ese registro para crear una animación de la tabla.
 - `CMakeLists.txt`: configuración de compilación con CMake.
 - `media/`: videos y archivos intermedios generados por Manim.
 
-## Cómo funciona la tabla
+## Funcionamiento de la tabla
 
 Cada clave se transforma en un índice mediante la política `DivisionHash`:
 
@@ -88,13 +94,7 @@ También se puede ejecutar sin activar el entorno:
 .venv/bin/manim -pql hash_table.py AnimacionHashTable
 ```
 
-Opciones útiles:
-
-- `-p`: abre el video al terminar el renderizado.
-- `-q l`: usa calidad baja (`480p15`) para hacer pruebas rápidas.
-- Para un video final de mayor calidad, usa por ejemplo `-pqh` o `-pqk`.
-
-El video se guarda normalmente dentro de `media/videos/hash_table/`. La escena
+El video se guarda dentro de `media/videos/hash_table/`. La escena
 lee los eventos de `trace.json` en orden, dibuja los buckets, muestra cada nodo
 encadenado y colorea temporalmente el bucket afectado. Las búsquedas indican
 éxito en verde y fallo en rojo.

@@ -8,11 +8,13 @@ class AnimacionHashTable(Scene):
         operation_pause = 1.1
         title = Text("TABLA HASH", font_size=36, weight=BOLD)
         subtitle = Text("Separate chaining | operaciones paso a paso", font_size=18, color=GRAY_B)
+        nombres = Text("Integrantes: \nZavaleta Alvino, Roger \nAquino Reyna, Jesus Emmanue \nMendoza Palacios, Gracia Luz", font_size=20, color=GRAY)
         subtitle.next_to(title, DOWN, buff=0.12)
+        nombres.next_to(subtitle, DOWN, buff=0.12)
 
-        self.play(Write(title), FadeIn(subtitle), run_time=1.2)
+        self.play(Write(title), FadeIn(subtitle),FadeIn(nombres), run_time=1.2)
         self.wait(1.5)
-        self.play(FadeOut(title), FadeOut(subtitle), run_time=0.5)
+        self.play(FadeOut(title), FadeOut(subtitle),FadeOut(nombres) ,run_time=0.5)
         title = Text("TABLA HASH", font_size=28, weight=BOLD).to_edge(UP, buff=0.22)
         self.add(title)
 
